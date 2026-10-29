@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi-Wiss · Miscelánea curada</title>
+  <meta
+    name="description"
+    content="Chi-Wiss: objetos misceláneos elegidos uno por uno. Tienda demo con catálogo dinámico, carrito y casino simulado."
+  />
+  <meta name="theme-color" content="#FFFBF4" />
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236D28D9'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%23FFFBF4'/%3E%3C/svg%3E"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@300..700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./css/tokens.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/header.css" />
+  <link rel="stylesheet" href="./css/shop.css" />
+  <link rel="stylesheet" href="./css/cart.css" />
+  <link rel="stylesheet" href="./css/casino.css" />
+</head>
+
+<body data-view="shop">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ==========================================================
+       Sprite de iconos · una sola familia, trazo 1.8
+       ========================================================== -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7" /><path d="m20 20-3.4-3.4" />
+    </symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5.5 8h13l-1 12h-11l-1-12Z" /><path d="M9 8V6a3 3 0 0 1 6 0v2" />
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="m6 6 12 12M18 6 6 18" />
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14" />
+    </symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M5 12h14" />
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V5h6v2" />
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor">
+      <path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3Z" />
+    </symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h11v10H3zM14 9h4l3 3v4h-7" /><circle cx="7" cy="18" r="1.6" /><circle cx="17.5" cy="18" r="1.6" />
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6l-7-3Z" /><path d="m9 12 2 2 4-4" />
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 7v5h-5" /><path d="M4 17v-5h5" /><path d="M6.1 8.5A7 7 0 0 1 18.4 7L20 12" /><path d="M17.9 15.5A7 7 0 0 1 5.6 17L4 12" />
+    </symbol>
+    <symbol id="i-roulette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="3" />
+      <path d="M12 3v6M21 12h-6M12 21v-6M3 12h6M18.4 5.6l-3.6 3.6M18.4 18.4l-3.6-3.6M5.6 18.4l3.6-3.6M5.6 5.6l3.6 3.6" />
+    </symbol>
+    <symbol id="i-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="4" />
+      <circle cx="8" cy="8" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="8" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="8" cy="16" r="1.2" fill="currentColor" stroke="none" />
+      <circle cx="16" cy="16" r="1.2" fill="currentColor" stroke="none" />
+    </symbol>
+    <symbol id="i-coin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><path d="M12 8v8M9.5 10h3.2a1.8 1.8 0 0 1 0 3.6H9.5" />
+    </symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3c.5 4.3 4.2 8 8.5 8.5-4.3.5-8 4.2-8.5 8.5-.5-4.3-4.2-8-8.5-8.5C7.8 11 11.5 7.3 12 3Z" />
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="8" r="3" /><path d="M3.5 20a5.5 5.5 0 0 1 11 0" /><path d="M16 5.5a3 3 0 0 1 0 5.8M17 14.5a5.5 5.5 0 0 1 3.5 5.5" />
+    </symbol>
+    <symbol id="i-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 3-6.7L3 8" /><path d="M3 3v5h5M12 7v5l3 2" />
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9" /><path d="m8 12 2.7 2.7L16 9.5" />
+    </symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3 2.8 20h18.4L12 3Z" /><path d="M12 9v4.5M12 17h.01" />
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="10" width="14" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" />
+    </symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12V4h8l10 10-8 8L3 12Z" /><circle cx="7.5" cy="8.5" r="1.2" fill="currentColor" stroke="none" />
+    </symbol>
+  </svg>
+
+  <!-- ==========================================================
+       Header fijo
+       ========================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="shell nav-shell">
+      <a class="brand" href="#/" aria-label="Chi-Wiss, ir a la tienda">
+        <img class="brand__logo" src="./logo-chi-wiss.svg" alt="" width="240" height="60" decoding="async" />
+      </a>
+
+      <form class="nav-search" role="search" data-search-form>
+        <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        <input
+          type="search"
+          name="q"
+          placeholder="Buscar objetos, categorías…"
+          aria-label="Buscar productos en Chi-Wiss"
+          autocomplete="off"
+        />
+        <button class="nav-search__btn" type="submit" aria-label="Buscar">
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+        </button>
+      </form>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#/" data-nav="shop">Tienda</a>
+        <button class="nav-link" type="button" data-offers>Ofertas</button>
+        <a href="#/casino" data-nav="casino">
+          Casino <span class="nav-links__badge">Demo</span>
+        </a>
+      </nav>
+
+      <div class="nav-actions">
+        <button
+          class="cart-trigger is-empty"
+          type="button"
+          id="cartTrigger"
+          aria-haspopup="dialog"
+          aria-controls="cartDialog"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-bag"></use></svg>
+          <span class="cart-trigger__label">Bolsa</span>
+          <span class="cart-trigger__count" id="cartCount">0</span>
+          <span class="cart-trigger__total" id="cartTotal">$0</span>
+        </button>
+
+        <button
+          class="icon-btn nav-burger"
+          type="button"
+          id="menuTrigger"
+          aria-haspopup="dialog"
+          aria-controls="menuDialog"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========================================================
+         Tienda
+         ======================================================== -->
+    <section class="view" id="shopView" data-view-panel="shop">
+      <div class="shell hero-shop">
+        <div class="hero-shop__copy">
+          <p class="overline">Miscelánea curada · Envíos a todo México</p>
+          <h1 class="hero-shop__title">
+            Lo que no sabías<br />
+            que necesitabas<span class="accent-dot">.</span>
+          </h1>
+          <p class="hero-shop__lead">
+            Objetos útiles, raros y bonitos. Elegidos uno por uno para que tu día tenga un poco más de intención.
+          </p>
+
+          <div class="hero-shop__actions">
+            <a class="btn btn--primary" href="#catalogo">
+              Explorar catálogo
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </a>
+            <a class="btn btn--outline" href="#/casino">
+              <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+              Probar el casino
+            </a>
+          </div>
+
+          <ul class="hero-trust" aria-label="Beneficios de compra">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-truck"></use></svg> Envío gratis desde $199</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Compra protegida</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg> 30 días de devolución</li>
+          </ul>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-art__panel">
+            <span class="hero-art__arch"></span>
+            <span class="hero-art__orb"></span>
+            <span class="hero-art__ring"></span>
+            <div class="hero-art__tag">Colección 02 · Objetos de mesa</div>
+            <div class="hero-art__sticker">
+              <strong>-35%</strong>
+              <span>en seleccionados</span>
+            </div>
+            <div class="hero-art__price">
+              <span>Desde</span>
+              <strong>$99</strong>
+              <span>Envío gratis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="benefits shell" aria-label="Servicios de la tienda">
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-truck"></use></svg>
+          <div><strong>Envío gratis</strong><span>En compras sobre $999</span></div>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+          <div><strong>Compra protegida</strong><span>Devoluciones simples</span></div>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+          <div><strong>Pago seguro</strong><span>Datos encriptados</span></div>
+        </li>
+        <li>
+          <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+          <div><strong>Casino demo</strong><span>Sin dinero real</span></div>
+        </li>
+      </ul>
+
+      <section class="shell catalog" id="catalogo" aria-labelledby="catalogTitle">
+        <div class="catalog-head">
+          <div>
+            <p class="overline">Catálogo</p>
+            <h2 id="catalogTitle">Miscelánea para todos los días<span class="accent-dot">.</span></h2>
+            <p class="catalog-head__meta" id="catalogMeta">Conectando con el catálogo…</p>
+          </div>
+
+          <div class="catalog-status">
+            <span class="source-chip is-loading" id="sourceChip">
+              <i aria-hidden="true"></i>
+              <span id="sourceLabel">Conectando API</span>
+            </span>
+            <button class="btn btn--outline btn--sm reload-btn" type="button" id="reloadCatalog">
+              <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+              Recargar
+            </button>
+          </div>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="category-scroller" id="categoryScroller" role="group" aria-label="Filtrar por categoría"></div>
+          <div class="catalog-tools">
+            <button class="chip" type="button" id="offersToggle" aria-pressed="false">
+              <svg class="icon" aria-hidden="true" style="width:13px;height:13px"><use href="#i-tag"></use></svg>
+              Ofertas
+            </button>
+            <label class="sort-control">
+              <span class="visually-hidden">Ordenar productos</span>
+              <select class="select" id="sortSelect">
+                <option value="relevance">Destacados</option>
+                <option value="price-asc">Menor precio</option>
+                <option value="price-desc">Mayor precio</option>
+                <option value="rating">Mejor valorados</option>
+                <option value="discount">Mayor descuento</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid" aria-busy="true" aria-live="polite"></div>
+
+        <div class="empty-state" id="catalogEmpty" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+          <h3>No encontramos esos objetos</h3>
+          <p>Prueba con otra palabra, cambia de categoría o limpia los filtros.</p>
+          <button class="btn btn--outline btn--sm" type="button" id="clearFilters">Limpiar filtros</button>
+        </div>
+      </section>
+
+      <section class="shell section" aria-labelledby="casinoTeaserTitle">
+        <div class="casino-teaser">
+          <div class="casino-teaser__copy">
+            <p class="overline casino-teaser__overline">Casino Chi-Wiss · Demo</p>
+            <h2 id="casinoTeaserTitle">La vitrina también es mesa<span>.</span></h2>
+            <p>
+              Apuesta el valor de tu bolsa a la ruleta, los dados o la moneda. Juega contra Nova IA y mira tu saldo moverse en tiempo real. Sin dinero real, sin trampas.
+            </p>
+            <div class="casino-teaser__actions">
+              <a class="btn btn--lilac" href="#/casino">
+                Entrar al casino
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+              <span class="casino-teaser__note">Saldo demo · puede quedar negativo</span>
+            </div>
+          </div>
+
+          <div class="casino-teaser__art" aria-hidden="true">
+            <div class="teaser-wheel"></div>
+            <div class="teaser-chip teaser-chip--one">
+              <strong>17 · Uva</strong>
+              <span>Último giro</span>
+            </div>
+            <div class="teaser-chip teaser-chip--two">
+              <strong>+$2,400</strong>
+              <span>Saldo demo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="shell section" aria-labelledby="newsletterTitle">
+        <div class="newsletter">
+          <div>
+            <p class="overline">Una carta al mes</p>
+            <h2 id="newsletterTitle">Objetos nuevos, sin ruido.</h2>
+            <p>Lanzamientos, reposiciones y alguna que otra sorpresa. Nada más.</p>
+          </div>
+          <form id="newsletterForm" novalidate>
+            <label class="visually-hidden" for="newsletterEmail">Tu correo electrónico</label>
+            <input
+              class="input"
+              type="email"
+              id="newsletterEmail"
+              name="email"
+              placeholder="tu@correo.com"
+              autocomplete="email"
+              required
+            />
+            <button class="btn btn--primary" type="submit">Suscribirme</button>
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========================================================
+         Casino
+         ======================================================== -->
+    <section class="view casino" id="casinoView" data-view-panel="casino" hidden>
+      <div class="casino__glow" aria-hidden="true"></div>
+      <div class="shell">
+        <header class="casino-head">
+          <div class="casino-head__copy">
+            <p class="overline">Casino Chi-Wiss · Juego simulado</p>
+            <h1>Suerte de vitrina<span>.</span></h1>
+            <p>
+              Tu bolsa es la apuesta. Elige un juego, reta a Nova IA y sigue el saldo en vivo. El carrito no se vacía: solo su valor entra en juego.
+            </p>
+          </div>
+
+          <div class="wallet" id="wallet">
+            <div class="wallet__top">
+              <span class="overline">Saldo demo</span>
+              <button class="wallet__reset" type="button" id="resetCasino">Reiniciar</button>
+            </div>
+            <strong class="wallet__value num" id="balanceValue">$0</strong>
+            <span class="wallet__delta" id="balanceDelta">Sin movimientos</span>
+          </div>
+        </header>
+
+        <div class="casino-layout">
+          <div class="game-column">
+            <div class="game-tabs" id="gameTabs" role="tablist" aria-label="Elige un juego">
+              <button
+                class="game-tab is-active"
+                id="tab-roulette"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="gamePanel"
+                data-game="roulette"
+              >
+                <span class="game-tab__icon"><svg class="icon" aria-hidden="true"><use href="#i-roulette"></use></svg></span>
+                <span class="game-tab__copy"><strong>Ruleta</strong><small>x2 – x35</small></span>
+              </button>
+              <button
+                class="game-tab"
+                id="tab-dice"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="gamePanel"
+                data-game="dice"
+                tabindex="-1"
+              >
+                <span class="game-tab__icon"><svg class="icon" aria-hidden="true"><use href="#i-dice"></use></svg></span>
+                <span class="game-tab__copy"><strong>Dados</strong><small>x5 – x25</small></span>
+              </button>
+              <button
+                class="game-tab"
+                id="tab-coin"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="gamePanel"
+                data-game="coin"
+                tabindex="-1"
+              >
+                <span class="game-tab__icon"><svg class="icon" aria-hidden="true"><use href="#i-coin"></use></svg></span>
+                <span class="game-tab__copy"><strong>Moneda</strong><small>x2</small></span>
+              </button>
+            </div>
+
+            <div class="game-stage" id="gamePanel" role="tabpanel" aria-labelledby="tab-roulette">
+              <div class="game-visual" id="gameVisual"></div>
+              <div class="game-controls" id="gameControls"></div>
+            </div>
+
+            <div class="round-result" id="roundResult" role="status" aria-live="polite" hidden></div>
+
+            <section class="history-card" aria-labelledby="historyTitle">
+              <div class="history-card__head">
+                <div>
+                  <p class="overline">Tu historial</p>
+                  <h2 id="historyTitle">Últimas jugadas</h2>
+                </div>
+                <span class="history-card__count num" id="historyCount">0</span>
+              </div>
+              <ul class="history-list" id="historyList"></ul>
+            </section>
+          </div>
+
+          <aside class="casino-side" aria-label="Apuesta y mesa">
+            <section class="side-card stake-card" aria-labelledby="stakeTitle">
+              <div class="side-card__head">
+                <h2 class="overline" id="stakeTitle">Tu apuesta</h2>
+                <span class="badge" id="stakeBadge">0 ítems</span>
+              </div>
+              <strong class="stake-card__value num" id="stakeValue">$0</strong>
+              <p class="stake-card__meta" id="stakeMeta">Tu bolsa está vacía.</p>
+              <ul class="stake-list" id="stakeList"></ul>
+              <a class="btn btn--outline btn--full" href="#/">
+                Editar bolsa
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              </a>
+              <p class="fine">La apuesta es el subtotal de tu bolsa. El carrito no se vacía.</p>
+            </section>
+
+            <section class="side-card ai-card" aria-labelledby="novaTitle">
+              <div class="ai-card__head">
+                <span class="ai-avatar" aria-hidden="true">N</span>
+                <div class="ai-card__id">
+                  <strong id="novaTitle">Nova IA</strong>
+                  <span>Rival simulada</span>
+                </div>
+                <span class="live-dot"><i aria-hidden="true"></i>En línea</span>
+              </div>
+              <div class="ai-card__balance">
+                <span>Saldo demo</span>
+                <strong class="num" id="novaBalance">$5,000</strong>
+              </div>
+              <p class="ai-card__status" id="novaStatus">Esperando tu jugada…</p>
+            </section>
+
+            <section class="side-card feed-card" aria-labelledby="feedTitle">
+              <div class="side-card__head">
+                <h2 class="overline" id="feedTitle">Mesa en vivo</h2>
+                <span class="live-dot"><i aria-hidden="true"></i>En vivo</span>
+              </div>
+              <p class="feed-card__sub">Jugadores simulados</p>
+              <ul class="feed-list" id="liveFeed"></ul>
+            </section>
+          </aside>
+        </div>
+
+        <p class="casino-disclaimer">
+          <svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg>
+          Juego 100% simulado. No se procesan pagos reales ni se gana dinero. El saldo es demo y puede quedar negativo.
+        </p>
+      </div>
+      <p class="visually-hidden" id="casinoAnnouncer" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <!-- ==========================================================
+       Footer
+       ========================================================== -->
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">Chi-Wiss<span>.</span></p>
+          <p>Objetos elegidos uno por uno. Si no mejora el día, no entra a la tienda.</p>
+        </div>
+        <div class="footer-col">
+          <h3>Tienda</h3>
+          <a href="#catalogo">Catálogo</a>
+          <button type="button" data-offers>Ofertas</button>
+          <a href="#/casino">Casino</a>
+        </div>
+        <div class="footer-col">
+          <h3>Ayuda</h3>
+          <button type="button" data-demo-link>Envíos</button>
+          <button type="button" data-demo-link>Devoluciones</button>
+          <button type="button" data-demo-link>Contacto</button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="currentYear">2026</span> Chi-Wiss · Tienda demo</span>
+        <span class="footer-bottom__demo"><i class="status-dot"></i> Hecho para demostrar, no para cobrar</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================
+       Carrito
+       ========================================================== -->
+  <dialog class="cart-dialog" id="cartDialog" aria-labelledby="cartTitle">
+    <header class="cart-head">
+      <div class="cart-head__title">
+        <span id="cartTitle">Tu bolsa</span>
+        <span class="cart-head__count num" id="cartDialogCount">0</span>
+      </div>
+      <button class="icon-btn" type="button" data-close-cart aria-label="Cerrar bolsa">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </header>
+    <div class="cart-body" id="cartBody"></div>
+    <footer class="cart-foot" id="cartFoot"></footer>
+  </dialog>
+
+  <!-- ==========================================================
+       Menú móvil
+       ========================================================== -->
+  <dialog class="menu-dialog" id="menuDialog" aria-labelledby="menuTitle">
+    <div class="menu-dialog__panel">
+      <div class="menu-dialog__head">
+        <div class="brand">
+          <img class="brand__logo" src="./logo-chi-wiss.svg" alt="" width="240" height="60" decoding="async" />
+          <span class="visually-hidden" id="menuTitle">Chi-Wiss</span>
+        </div>
+        <button class="icon-btn" type="button" data-close-menu aria-label="Cerrar menú">
+          <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+        </button>
+      </div>
+
+      <form class="menu-search" role="search" data-search-form>
+        <label class="visually-hidden" for="menuSearchInput">Buscar productos</label>
+        <input class="input" id="menuSearchInput" type="search" name="q" placeholder="Buscar objetos…" autocomplete="off" />
+        <button class="btn btn--primary btn--sm" type="submit" aria-label="Buscar">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+        </button>
+      </form>
+
+      <nav class="menu-nav" aria-label="Menú móvil">
+        <a href="#/" data-nav="shop">Tienda <small>Catálogo completo</small></a>
+        <button type="button" data-offers>Ofertas <small>Selección con descuento</small></button>
+        <a href="#/casino" data-nav="casino">Casino <small>Ruleta, dados y moneda</small></a>
+      </nav>
+
+      <div class="menu-foot">
+        <span>Saldo casino</span>
+        <strong class="num" id="menuBalance">$0</strong>
+        <span>Envío gratis desde $999 · Juego simulado</span>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
